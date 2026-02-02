@@ -3,20 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Login - Sistema de Satisfacao</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <div class="login-container">
-        <h1>Area de Administracao</h1>
-        {% if error %}
-        <p class="error">{{ error }}</p>
-        {% endif %}
-        <form method="POST">
-            <input type="text" name="username" placeholder="Utilizador" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Entrar</button>
-        </form>
-    </div>
+<body class="login-page">
+    <main class="login-container" role="main">
+        <div class="login-card">
+            <div class="login-header">
+                <span class="login-icon" aria-hidden="true">&#128274;</span>
+                <h1>Area de Administracao</h1>
+                <p>Introduza as suas credenciais para aceder</p>
+            </div>
+            
+            {% if error %}
+            <div class="error-message" role="alert">
+                <span aria-hidden="true">&#9888;</span>
+                {{ error }}
+            </div>
+            {% endif %}
+            
+            <form method="POST" class="login-form" autocomplete="off">
+                <div class="form-group">
+                    <label for="username">Utilizador</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        placeholder="Introduza o utilizador" 
+                        required
+                        autocomplete="username"
+                        autofocus>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Introduza a password" 
+                        required
+                        autocomplete="current-password">
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span>Entrar</span>
+                    <span aria-hidden="true">&#8594;</span>
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <a href="{{ url_for('index') }}">&#8592; Voltar a pagina principal</a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
