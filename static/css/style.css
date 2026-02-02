@@ -261,10 +261,96 @@ body {
 
 /* Footer Publico */
 .footer-public {
-    padding: 20px;
+    padding: 24px 20px;
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Tech Badges */
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tech-badge.python {
+    background: #3776ab;
+    color: #ffd43b;
+}
+
+.tech-badge.flask {
+    background: #000000;
+    color: #ffffff;
+}
+
+.tech-badge.sqlite {
+    background: #003b57;
+    color: #ffffff;
+}
+
+.tech-badge.html {
+    background: #e34f26;
+    color: #ffffff;
+}
+
+.tech-badge.js {
+    background: #f7df1e;
+    color: #000000;
+}
+
+.tech-badge.chart {
+    background: #ff6384;
+    color: #ffffff;
+}
+
+.tech-badge.github {
+    background: #24292e;
+    color: #ffffff;
+}
+
+/* Admin Link Button */
+.admin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-link:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.admin-link svg {
+    width: 16px;
+    height: 16px;
 }
 
 /* ============================================

@@ -65,7 +65,20 @@
     </main>
     
     <footer class="footer-public">
+        <div class="tech-badges">
+            <span class="tech-badge python">Python 3</span>
+            <span class="tech-badge flask">Flask</span>
+            <span class="tech-badge sqlite">SQLite</span>
+            <span class="tech-badge html">HTML5/CSS3</span>
+            <span class="tech-badge js">JavaScript</span>
+            <span class="tech-badge chart">Chart.js</span>
+            <span class="tech-badge github">GitHub</span>
+        </div>
         <p>Sistema de Avaliacao de Satisfacao &copy; 2026</p>
+        <a href="{{ url_for('login') }}" class="admin-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            Area de Administracao
+        </a>
     </footer>
     
     <script>
