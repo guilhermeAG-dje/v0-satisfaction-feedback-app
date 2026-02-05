@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin ? LembreMe</title>
+  <link rel="stylesheet" href="/login.css" />
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <h1>Admin</h1>
+      <form method="post">
+        <input type="text" name="username" placeholder="Utilizador" required />
+        <input type="password" name="password" placeholder="Palavra-passe" required />
+        <button type="submit">Entrar</button>
+      </form>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <p id="msg">{{ messages[0] }}</p>
+        {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+</body>
+</html>

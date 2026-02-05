@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin ? LembreMe</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">LM</div>
+      <div>
+        <h1>Painel Admin</h1>
+        <p class="subtitle">Gest?o completa</p>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="ghost-btn small-btn" href="/admin_2026/export/all">Exportar Tudo</a>
+      <a class="ghost-btn" href="/admin_2026/logout">Sair</a>
+    </div>
+  </header>
+
+  <main>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <p class="muted">{{ messages[0] }}</p>
+      {% endif %}
+    {% endwith %}
+
+    <section class="grid">
+      <div class="card">
+        <div class="card-header"><h2>Total</h2></div>
+        <div class="med-title">{{ total }}</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h2>Muito Satisfeito</h2></div>
+        <div class="med-title">{{ muito_satisfeito }} ({{ pct_muito }}%)</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h2>Satisfeito</h2></div>
+        <div class="med-title">{{ satisfeito }} ({{ pct_satisfeito }}%)</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h2>Insatisfeito</h2></div>
+        <div class="med-title">{{ insatisfeito }} ({{ pct_insatisfeito }}%)</div>
+      </div>
+
+      <div class="card history-card">
+        <div class="card-header">
+          <h2>Utilizadores</h2>
+        </div>
+        <div class="tomas-list">
+          {% for u in users %}
+          <div class="toma-item">
+            <div>
+              <div class="med-title">{{ u.email }}</div>
+              <div class="med-meta">Telem?vel: {{ u.phone or '?' }} ? Medicamentos: {{ u.meds }} ? Tomas: {{ u.tomas }}</div>
+            </div>
+            <div class="actions">
+              <a class="ghost-btn small-btn" href="/admin_2026/users/{{ u.id }}">Ver</a>
+              <form method="post" action="/admin_2026/users/{{ u.id }}/delete" style="display:inline;">
+                <button class="delete-btn" type="submit">Apagar</button>
+              </form>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="card history-card">
+        <div class="card-header">
+          <h2>Feedback</h2>
+          <div>
+            <a class="ghost-btn small-btn" href="/admin_2026/export/csv">Exportar CSV</a>
+            <a class="ghost-btn small-btn" href="/admin_2026/export/txt">Exportar TXT</a>
+          </div>
+        </div>
+        <div class="tomas-list">
+          {% for f in feedbacks %}
+          <div class="toma-item">
+            <div>
+              <div class="med-title">{{ f.grau_satisfacao }}</div>
+              <div class="med-meta">{{ f.dia_semana }}</div>
+            </div>
+            <div class="toma-time">{{ f.data }} ? {{ f.hora }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

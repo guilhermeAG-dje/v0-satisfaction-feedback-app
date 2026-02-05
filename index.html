@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LembreMe</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2c7be5">
+
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">LM</div>
+    <div>
+      <h1>LembreMe</h1>
+      <p class="subtitle">A tua rotina de medicamentos, simples e bonita.</p>
+    </div>
+  </div>
+  <button class="ghost-btn" onclick="logout()">Sair</button>
+</header>
+
+<main>
+  <section class="grid">
+    <div class="card form-card">
+      <div class="card-header">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 11h4a1 1 0 0 0 0-2h-4V7a1 1 0 0 0-2 0v4H7a1 1 0 0 0 0 2h4v4a1 1 0 0 0 2 0z"/>
+          </svg>
+        </div>
+        <h2>Adicionar Medicamento</h2>
+      </div>
+
+      <div class="field">
+        <label>Nome</label>
+        <input id="nome" placeholder="Ex: Paracetamol">
+      </div>
+      <div class="field">
+        <label>Dose</label>
+        <input id="dose" placeholder="Ex: 500mg">
+      </div>
+      <div class="field">
+        <label>Hora</label>
+        <input type="time" id="hora">
+      </div>
+      <div class="field">
+        <label>Data</label>
+        <input type="date" id="data">
+      </div>
+
+      <div class="row">
+        <button id="saveBtn" class="primary-btn" onclick="guardar()">Guardar</button>
+        <button id="cancelEditBtn" class="ghost-btn small-btn" onclick="cancelarEdicao()" style="display:none;">Cancelar</button>
+      </div>
+      <p id="formMsg" class="muted"></p>
+
+      <button id="notifBtn" class="ghost-btn small-btn" onclick="ativarNotificacoes()">Ativar notificações</button>
+    </div>
+
+    <div class="card list-card">
+      <div class="card-header">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 5h10a1 1 0 1 0 0-2H7a1 1 0 1 0 0 2zm0 7h10a1 1 0 1 0 0-2H7a1 1 0 1 0 0 2zm0 7h10a1 1 0 1 0 0-2H7a1 1 0 1 0 0 2zM4 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+          </svg>
+        </div>
+        <h2>Os teus medicamentos</h2>
+      </div>
+
+      <div id="nextMed" class="next-med">
+        <div class="next-label">Próximo alarme</div>
+        <div class="next-value">—</div>
+      </div>
+
+      <div id="medList" class="med-list"></div>
+      <div id="emptyState" class="empty">
+        Ainda não tens medicamentos guardados.
+      </div>
+    </div>
+
+    <div class="card history-card">
+      <div class="card-header">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 6a1 1 0 0 0-1 1v5.4l3.6 2.1a1 1 0 1 0 1-1.74l-2.6-1.52V7a1 1 0 0 0-1-1zm0-4a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/>
+          </svg>
+        </div>
+        <h2>Histórico de tomas</h2>
+        <button class="ghost-btn small-btn" onclick="exportarHistorico()">Exportar CSV</button>
+      </div>
+
+      <div class="calendar">
+        <div class="cal-header">
+          <button class="ghost-btn small-btn" onclick="prevMonth()">‹</button>
+          <div id="calTitle" class="cal-title">—</div>
+          <button class="ghost-btn small-btn" onclick="nextMonth()">›</button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+
+      <div class="filter-row">
+        <div class="field">
+          <label>Início</label>
+          <input id="fStart" type="date">
+        </div>
+        <div class="field">
+          <label>Fim</label>
+          <input id="fEnd" type="date">
+        </div>
+        <button class="ghost-btn small-btn" onclick="aplicarFiltro()">Aplicar filtro</button>
+        <button class="ghost-btn small-btn" onclick="limparFiltro()">Limpar</button>
+      </div>
+
+      <div id="tomasList" class="tomas-list"></div>
+      <div id="tomasEmpty" class="empty">Sem registos neste mês.</div>
+    </div>
+  </section>
+</main>
+
+<div id="alerta" class="alerta">
+  <div class="alerta-box">
+    <h2>⏰ Hora do Medicamento</h2>
+    <p id="alertaTexto"></p>
+    <button onclick="fecharAlerta()">OK</button>
+  </div>
+</div>
+
+<audio id="som" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"></audio>
+
+<script src="app.js" charset="utf-8"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+
+</body>
+</html>

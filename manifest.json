@@ -1,0 +1,9 @@
+{
+  "name": "LembreMe",
+  "short_name": "LembreMe",
+  "start_url": "/login",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2b6de5",
+  "icons": []
+}

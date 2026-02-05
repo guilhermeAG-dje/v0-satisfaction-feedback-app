@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LembreMe – Login</title>
+
+  <link rel="stylesheet" href="login.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2c7be5">
+
+</head>
+<body>
+
+<div class="login-container">
+  <div class="login-box">
+    <h1>💊 LembreMe</h1>
+
+    <input type="email" id="email" placeholder="Email (opcional)">
+    <input type="tel" id="phone" placeholder="Telemóvel (opcional)">
+    <input type="password" id="password" placeholder="Palavra-passe">
+
+    <button onclick="login()">Entrar</button>
+    <button onclick="registar()">Criar Conta</button>
+    <button class="ajuda-btn" onclick="loginGoogle()">Entrar com Google</button>
+    <button class="ajuda-btn" onclick="window.location.href='/admin_2026/login'">Admin</button>
+    <button class="ajuda-btn" onclick="mostrarAjuda()">❓ Ajuda</button>
+
+    <p id="msg"></p>
+  </div>
+</div>
+
+<div id="ajuda" class="ajuda">
+  <div class="ajuda-box">
+    <h2>Ajuda</h2>
+    <p>
+      1️⃣ Escreva o seu email<br><br>
+      2️⃣ Escreva a palavra-passe<br><br>
+      3️⃣ Clique em Entrar<br><br>
+      👉 Se não tiver conta, clique em Criar Conta
+    </p>
+    <button onclick="fecharAjuda()">Fechar</button>
+  </div>
+</div>
+
+<script src="login.js" charset="utf-8"></script>
+
+<script>
+function mostrarAjuda() {
+  document.getElementById("ajuda").style.display = "flex";
+}
+function fecharAjuda() {
+  document.getElementById("ajuda").style.display = "none";
+}
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+
+</body>
+</html>

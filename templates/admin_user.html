@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin ? Utilizador</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">LM</div>
+      <div>
+        <h1>{{ user.email }}</h1>
+        <p class="subtitle">Detalhes do utilizador</p>
+      </div>
+    </div>
+    <a class="ghost-btn" href="/admin_2026">Voltar</a>
+  </header>
+
+  <main>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <p class="muted">{{ messages[0] }}</p>
+      {% endif %}
+    {% endwith %}
+
+    <section class="grid">
+      <div class="card">
+        <div class="card-header"><h2>Reset Password</h2></div>
+        <form method="post" action="/admin_2026/users/{{ user.id }}/reset">
+          <div class="field">
+            <label>Nova palavra?passe</label>
+            <input name="new_password" type="text" placeholder="Nova palavra-passe" required />
+          </div>
+          <button class="primary-btn" type="submit">Atualizar</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h2>Medicamentos</h2></div>
+        <div class="tomas-list">
+          {% for m in meds %}
+          <div class="toma-item">
+            <div>
+              <div class="med-title">{{ m.nome }}</div>
+              <div class="med-meta">{{ m.dose }} ? {{ m.hora }}{% if m.data %} ? {{ m.data }}{% endif %}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="card history-card">
+        <div class="card-header"><h2>Hist?rico de tomas</h2></div>
+        <div class="tomas-list">
+          {% for t in tomas %}
+          <div class="toma-item">
+            <div>
+              <div class="med-title">{{ t.nome }}</div>
+              <div class="med-meta">{{ t.dose }}{% if t.nota %} ? {{ t.nota }}{% endif %}</div>
+            </div>
+            <div class="toma-time">{{ t.data }} ? {{ t.hora }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
